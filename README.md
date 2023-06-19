@@ -14,5 +14,9 @@ While there may be faster or more effective methods to classify our data, the ob
 # Outline
 1. Data Processing
 2. Embedding layer
+    * Embeddings are used to reduce high-dimensional feature spaces to denser feature spaces with low dimensions.
+    * Embeddings are used in NLP, Recommendation Systems etc.
+    * To obtain the embedding matrix, methods like backpropagation and gradient descent update initialised matrices with the desired number of dimensions by minimising a specified loss function
+
 3. Fitting a classification model
 4. Evaluation
