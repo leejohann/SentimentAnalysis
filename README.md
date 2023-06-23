@@ -5,24 +5,27 @@ Data retrieved from: https://www.kaggle.com/datasets/jp797498e/twitter-entity-se
 
 # Objective
 
-This project is a learning project on Natural Language Processing (NLP) and Deep Learning. 
+This is a learning project on Natural Language Processing (NLP) and Deep Learning. 
 
-The goal is to use a Neural Network for the embedding layer on processed text data, before fitting a classfication model to classify tweets into four categories: `Positive`, `Negative`, `Neutral`, `Irrelevant`.
+The goal is to use a Neural Network so we can add an embedding layer on processed text data, then fit a classfication model to classify tweets into four categories: `Positive`, `Negative`, `Neutral`, `Irrelevant`.
 
 # Outline
 1. Data Processing
-    The following steps were used to preprocess the tweets:
+    The following steps were used to preprocess each tweet:
     1. Lowercasing
     2. Remove all punctuation except for apostrophes
     3. Whitespace tokenisation
     4. Removing stopwords
     5. Removing words with numbers (numbers, usernames etc.)
-    6. POS tagging
+    6. POS (Part-of-speech) tagging
     7. Lemmatisation
-2. Embedding layer
-    * Embeddings are used to reduce high-dimensional feature spaces to denser feature spaces with low dimensions.
-    * Embeddings are used in NLP, Recommendation Systems etc.
-    * To obtain the embedding matrix, methods like backpropagation and gradient descent update initialised matrices with the desired number of dimensions by minimising a specified loss function
+2. Model building
+    Embedding layer:
+        * Embeddings are used to reduce high-dimensional feature spaces to denser feature spaces with low dimensions.
+        * Embeddings are used in NLP, Recommendation Systems etc.
+        * To obtain the embedding matrix, methods like backpropagation and gradient descent update initialised matrices with the desired number of dimensions by minimising a specified loss function
+
+        For the basic model, we reduce our vocabulary size of 16.6k to 100 dimensions in our embedding layer.
 
 3. Fitting a classification model
-4. Evaluation
+4. Evaluation and Accuracy
