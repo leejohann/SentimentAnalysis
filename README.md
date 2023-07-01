@@ -19,8 +19,9 @@ The goal is to use a simple Neural Network to classify tweets into four categori
     5. Removing words with numbers (numbers, usernames etc.)
     6. POS (Part-of-speech) tagging
     7. Lemmatisation
+    Then, all tokens in the defined vocabulary are integer-indexed.
        
-2. Model Building
+2. Model Building (refer to next section for different models used)
    
     2.1 Embedding layer:
    
@@ -38,3 +39,23 @@ The goal is to use a simple Neural Network to classify tweets into four categori
 4. Model Fitting: With our specified Keras model, we fit the model using our training data
 5. Model Prediction: With our trained model, we can predict on our test set to obtain predicted values
 6. Evaluation and AccuracyL compare our actual and predicted values to obtain an accuracy and loss score
+
+# Models
+
+## Model 1
+1. Embedding layer - trained with our train + test vocabulary
+2. Flatten layer
+3. Dense with softmax activation
+
+## Model 2
+1. Embedding layer - pretrained GloVe embeddings
+    - Model 2: no fine-tuning
+    - Model 2.1: fine-tuning
+2. Flatten layer
+3. Dense with softmax activation
+
+Notes:
+- to use the GloVe embeddings, there are a few differences in the preprocessing steps:
+    - conjunctions are handled differently
+
+## Model 3
