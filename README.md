@@ -58,4 +58,3 @@ Notes:
 - to use the GloVe embeddings, there are a few differences in the preprocessing steps:
     - conjunctions are handled differently
 
-## Model 3
