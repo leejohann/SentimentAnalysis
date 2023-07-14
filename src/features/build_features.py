@@ -16,6 +16,9 @@ from tensorflow.keras.utils import pad_sequences
 This file transform the processed data into tokens to feed into our model
 """
 
+"""
+Getting stuff
+"""
 # getting stopwords
 stopwords = stopwords.words('english')
 
@@ -23,6 +26,9 @@ stopwords = stopwords.words('english')
 #nltk.download('averaged_perceptron_tagger')  # Download POS tagger data
 #nltk.download('wordnet')
 
+"""
+Preprocessing and tokenising text
+"""
 # function to convert POS tags to wordnet tags
 def convert_pos_tag(tag):
     """ 
@@ -38,6 +44,7 @@ def convert_pos_tag(tag):
         return wordnet.ADV
     else:
         return None
+    
     
 # function to pre-process text df
 def preprocess_text(processed_data_path, remove_apostrophes):
@@ -102,3 +109,69 @@ def preprocess_text(processed_data_path, remove_apostrophes):
         tweet_dict[tweet_id] = lemmas
 
     return tweet_dict
+
+"""
+Some other helper functions
+"""
+# function to find vocabulary, vocabulary size and max tweet size (train_df + test_df)
+def find_vocab(tweet_dict_list):
+    """ 
+    Takes in a list of tweet dictionaries to find total vocabulary size 
+    and max tweet size (for padding)
+    """
+    # store
+    vocabulary = set()
+    max_tweet_size = 0
+
+    for dict in tweet_dict_list:
+        for tokens in dict.values():
+            # vocabulary
+            vocabulary.update(tokens)
+
+            # finding max tweet size for padding
+            if len(tokens) > max_tweet_size:
+                max_tweet_size = len(tokens)
+
+    vocab_size = len(vocabulary)
+    
+    return vocabulary, vocab_size, max_tweet_size
+
+
+# function to pad and index our dictionaries of tweets
+def index_tweets(tweet_dict_list):
+    """
+    Takes in list of tweet dictionaries to index each dictionary based on aggregated 
+        vocabulary
+    """
+    # extract vocabulary
+    vocabulary, vocab_size, max_tweet_size = find_vocab(tweet_dict_list)
+
+    # Index vocabulary
+    vocab_index = list(range(2, vocab_size + 2))
+    indexed_vocab = {word:index for word, index in zip(vocabulary, vocab_index)}
+
+    # index each dictionary
+    indexed_dict_list = []
+    for tweet_dict in tweet_dict_list:
+
+        indexed_dict = {}
+
+        for tweet_id, tweet in tweet_dict.items():
+        # storing index of every word in each tweet
+            tweet_indexed = []
+            for word in tweet:
+                word_index = indexed_vocab[word]
+                tweet_indexed.append(word_index)
+            # store tweet indexes
+            indexed_dict[tweet_id] = tweet_indexed
+
+            # pad tweet here
+            pad_amount = max_tweet_size - len(tweet_indexed)
+            if pad_amount > 0:
+                tweet_indexed.extend([0]* pad_amount) # padding
+        
+        # append to list
+        indexed_dict_list.append(indexed_dict)
+        
+    
+    return indexed_dict_list, indexed_vocab
