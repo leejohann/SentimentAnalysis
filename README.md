@@ -27,7 +27,7 @@ The goal is to use a simple Neural Network to classify tweets into four categori
    
     * Embeddings are used to reduce high-dimensional feature spaces to denser feature spaces with low dimensions.
     * Embeddings are used in NLP, Recommendation Systems etc.
-    * Keras uses methods like backpropagation and gradient descent update initialised matrices with the desired number of dimensions by minimising the specified loss function (in our case `categorical_accuracy_crossentropy`
+    * Keras uses methods like backpropagation and gradient descent to update initialised matrices with the desired number of dimensions by minimising the specified loss function (in our case `categorical_accuracy_crossentropy`)
     * For the basic model, we train the embedding layer using our own vocabulary, reducing vocabulary size of 17k to 100 dimensions in our embedding layer.
     * If we use a pre-trained embedding layer (like Word2Vec), we can choose if we want to keep the embeddings the same throughout the epochs, or fine-tune them over the epochs.
   
@@ -38,7 +38,7 @@ The goal is to use a simple Neural Network to classify tweets into four categori
 
 4. Model Fitting: With our specified Keras model, we fit the model using our training data
 5. Model Prediction: With our trained model, we can predict on our test set to obtain predicted values
-6. Evaluation and AccuracyL compare our actual and predicted values to obtain an accuracy and loss score
+6. Evaluation and Accuracy: compare our actual and predicted values to obtain an accuracy and loss score
 
 # Models
 
